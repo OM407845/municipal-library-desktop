@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleurs.LoginController">
+   <center>
+      <VBox alignment="CENTER" maxWidth="350.0" spacing="20.0" styleClass="login-form">
+         <children>
+            <Label styleClass="login-title" text="Bibliothèque Municipale" />
+            
+            <VBox spacing="15.0">
+               <children>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Nom d'utilisateur:" />
+                        <TextField fx:id="usernameField" promptText="Username" />
+                     </children>
+                  </VBox>
+                  
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Mot de passe:" />
+                        <PasswordField fx:id="passwordField" promptText="Password" />
+                     </children>
+                  </VBox>
+                  
+                  <Button maxWidth="Infinity" onAction="#handleLogin" styleClass="primary-button" text="Se connecter" />
+                  <Label fx:id="errorLabel" styleClass="error-label" visible="false" />
+               </children>
+            </VBox>
+            
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label text="Comptes de test:" />
+                  <Label text="admin/admin - bib/bib1234" />
+                  <Label text="prepose/prepose1234 - client/client" />
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>

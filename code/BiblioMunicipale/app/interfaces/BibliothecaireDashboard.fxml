@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleurs.BibliothecaireController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="header">
+         <children>
+            <Label styleClass="header-title" text="Gestion Documents" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="userInfoLabel" styleClass="user-info" />
+            <Button onAction="#handleLogout" styleClass="logout-button" text="Déconnexion" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </HBox>
+   </top>
+   
+   <center>
+      <BorderPane>
+         <top>
+            <VBox spacing="15.0">
+               <children>
+                  <HBox spacing="10.0">
+                     <children>
+                        <ComboBox fx:id="critereRechercheCombo" />
+                        <TextField fx:id="rechercheField" promptText="Rechercher..." />
+                        <Button onAction="#handleSearch" styleClass="primary-button" text="Rechercher" />
+                     </children>
+                  </HBox>
+                  
+                  <VBox spacing="10.0" styleClass="form-section">
+                     <children>
+                        <Label styleClass="section-title" text="Document" />
+                        <HBox spacing="10.0">
+                           <children>
+                              <TextField fx:id="codeBarreField" promptText="Code-barre" />
+                              <TextField fx:id="titreField" promptText="Titre" />
+                              <TextField fx:id="auteurField" promptText="Auteur" />
+                              <ComboBox fx:id="typeCombo" promptText="Type" />
+                              <TextField fx:id="exemplairesField" promptText="Exemplaires" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Button onAction="#handleAddDocument" styleClass="primary-button" text="Ajouter" />
+                              <Button onAction="#handleUpdateDocument" styleClass="primary-button" text="Modifier" />
+                              <Button onAction="#handleDeleteDocument" styleClass="danger-button" text="Supprimer" />
+                              <Button onAction="#handleClearForm" text="Vider" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+               </padding>
+            </VBox>
+         </top>
+         
+         <center>
+            <TableView fx:id="documentsTable">
+               <columns>
+                  <TableColumn fx:id="titreColumn" prefWidth="250.0" text="Titre" />
+                  <TableColumn fx:id="auteurColumn" prefWidth="150.0" text="Auteur" />
+                  <TableColumn fx:id="typeColumn" prefWidth="100.0" text="Type" />
+                  <TableColumn fx:id="exemplairesColumn" prefWidth="100.0" text="Exemplaires" />
+               </columns>
+            </TableView>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

@@ -1,0 +1,106 @@
+/* CSS Simplifié */
+.root {
+  -fx-font-family: "Segoe UI", Arial, sans-serif;
+  -fx-background-color: #f5f5f5;
+  -fx-font-size: 14px;
+}
+
+/* Header */
+.header {
+  -fx-background-color: #2c3e50;
+  -fx-padding: 15px;
+}
+
+.header-title {
+  -fx-text-fill: white;
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+}
+
+.user-info {
+  -fx-text-fill: white;
+  -fx-opacity: 0.9;
+}
+
+/* Boutons */
+.button {
+  -fx-background-radius: 5px;
+  -fx-padding: 8px 15px;
+  -fx-cursor: hand;
+}
+
+.primary-button {
+  -fx-background-color: #3498db;
+  -fx-text-fill: white;
+}
+
+.success-button {
+  -fx-background-color: #27ae60;
+  -fx-text-fill: white;
+}
+
+.danger-button {
+  -fx-background-color: #e74c3c;
+  -fx-text-fill: white;
+}
+
+.logout-button {
+  -fx-background-color: #e74c3c;
+  -fx-text-fill: white;
+}
+
+/* Champs */
+.text-field,
+.password-field,
+.text-area,
+.combo-box {
+  -fx-background-color: white;
+  -fx-border-color: #ddd;
+  -fx-border-radius: 5px;
+  -fx-padding: 8px;
+}
+
+/* Labels */
+.section-title {
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #2c3e50;
+}
+
+.error-label {
+  -fx-text-fill: #e74c3c;
+  -fx-font-weight: bold;
+}
+
+/* Tableaux */
+.table-view {
+  -fx-background-color: white;
+  -fx-border-color: #ddd;
+}
+
+.table-view .column-header {
+  -fx-background-color: #34495e;
+  -fx-text-fill: white;
+  -fx-font-weight: bold;
+}
+
+/* Sections */
+.form-section {
+  -fx-background-color: white;
+  -fx-border-color: #ddd;
+  -fx-border-radius: 5px;
+  -fx-padding: 15px;
+}
+
+/* Login */
+.login-form {
+  -fx-background-color: white;
+  -fx-border-radius: 10px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);
+}
+
+.login-title {
+  -fx-font-size: 24px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #2c3e50;
+}

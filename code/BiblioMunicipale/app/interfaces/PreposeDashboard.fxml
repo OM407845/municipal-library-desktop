@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleurs.PreposeController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="header">
+         <children>
+            <Label styleClass="header-title" text="Comptoir - Préposé" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="userInfoLabel" styleClass="user-info" text="Connecté: Mikou Med" />
+            <Button onAction="#handleLogout" styleClass="logout-button" text="Déconnexion" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </HBox>
+   </top>
+
+   <center>
+      <TabPane tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Prêts/Retours">
+               <content>
+                  <VBox spacing="20.0">
+                     <children>
+                        <VBox spacing="10.0" styleClass="form-section">
+                           <children>
+                              <Label styleClass="section-title" text="Scanner Document" />
+                              <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                 <children>
+                                    <TextField fx:id="scanDocumentField" promptText="Code-barre document" prefWidth="200.0" />
+                                    <Button onAction="#handleScanDocument" styleClass="primary-button" text="Scanner" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="documentInfoLabel" styleClass="info-label" />
+                           </children>
+                        </VBox>
+
+                        <VBox spacing="10.0" styleClass="form-section">
+                           <children>
+                              <Label styleClass="section-title" text="Scanner Client" />
+                              <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                 <children>
+                                    <TextField fx:id="scanClientField" promptText="Carte client" prefWidth="200.0" />
+                                    <Button onAction="#handleScanClient" styleClass="primary-button" text="Scanner" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="clientInfoLabel" styleClass="info-label" />
+                           </children>
+                        </VBox>
+
+                        <VBox spacing="10.0" styleClass="form-section">
+                           <children>
+                              <HBox spacing="15.0" alignment="CENTER">
+                                 <children>
+                                    <Button onAction="#handlePret" styleClass="success-button" text="Effectuer Prêt" prefWidth="120.0" />
+                                    <Button onAction="#handleRetour" styleClass="warning-button" text="Effectuer Retour" prefWidth="120.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+
+            <Tab text="Prêts en cours">
+               <content>
+                  <VBox spacing="15.0">
+                     <children>
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label styleClass="section-title" text="Liste des prêts en cours" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Button onAction="#handleRefreshTable" text="Actualiser" />
+                           </children>
+                        </HBox>
+                        <TableView fx:id="pretsTable">
+                           <columns>
+                              <TableColumn fx:id="clientColumn" prefWidth="150.0" text="Client" />
+                              <TableColumn fx:id="documentColumn" prefWidth="200.0" text="Document" />
+                              <TableColumn fx:id="dateEmpruntColumn" prefWidth="120.0" text="Date Emprunt" />
+                              <TableColumn fx:id="dateRetourColumn" prefWidth="120.0" text="Date Retour" />
+                              <TableColumn fx:id="statutColumn" prefWidth="100.0" text="Statut" />
+                              <TableColumn fx:id="amendeColumn" prefWidth="80.0" text="Amende" />
+                           </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+
+            <Tab text="Amendes">
+               <content>
+                  <VBox spacing="20.0">
+                     <children>
+                        <VBox spacing="10.0" styleClass="form-section">
+                           <children>
+                              <Label styleClass="section-title" text="Rechercher Amendes" />
+                              <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                 <children>
+                                    <TextField fx:id="amendeClientField" promptText="Numéro de carte client" prefWidth="200.0" />
+                                    <Button onAction="#handleRechercherAmendes" styleClass="primary-button" text="Rechercher" />
+                                 </children>
+                              </HBox>
+                              <Label fx:id="amendeInfoLabel" styleClass="info-label" />
+                           </children>
+                        </VBox>
+
+                        <VBox spacing="10.0" styleClass="form-section">
+                           <children>
+                              <Label styleClass="section-title" text="Paiement Amende" />
+                              <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                 <children>
+                                    <TextField fx:id="amendeMontantField" promptText="Montant (DH)" prefWidth="100.0" />
+                                    <Button onAction="#handlePayerAmende" styleClass="success-button" text="Payer Amende" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

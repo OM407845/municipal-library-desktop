@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleurs.ClientController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="header">
+         <children>
+            <Label styleClass="header-title" text="Espace Client" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="userInfoLabel" styleClass="user-info" text="Connecté: Client" />
+            <Button onAction="#handleLogout" styleClass="logout-button" text="Déconnexion" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </HBox>
+   </top>
+
+   <center>
+      <TabPane tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <!-- Onglet Catalogue -->
+            <Tab text="Catalogue">
+               <content>
+                  <BorderPane>
+                     <top>
+                        <VBox spacing="10.0" styleClass="form-section">
+                           <children>
+                              <Label styleClass="section-title" text="Recherche dans le catalogue" />
+                              <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                 <children>
+                                    <ComboBox fx:id="critereRechercheCombo" prefWidth="150.0" />
+                                    <TextField fx:id="rechercheField" promptText="Rechercher..." prefWidth="300.0" />
+                                    <Button onAction="#handleSearch" styleClass="primary-button" text="Rechercher" />
+                                    <Button onAction="#handleShowAll" text="Tout afficher" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     </top>
+                     <center>
+                        <TableView fx:id="catalogueTable">
+                           <columns>
+                              <TableColumn fx:id="titreColumn" prefWidth="300.0" text="Titre" />
+                              <TableColumn fx:id="typeColumn" prefWidth="120.0" text="Type" />
+                              <TableColumn fx:id="disponibleColumn" prefWidth="150.0" text="Disponibilité" />
+                              <TableColumn fx:id="actionColumn" prefWidth="120.0" text="Action" />
+                           </columns>
+                        </TableView>
+                     </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+
+            <!-- Onglet Mes Prêts -->
+            <Tab text="Mes Prêts">
+               <content>
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label styleClass="section-title" text="Mes prêts en cours" />
+                        <TableView fx:id="mesPretsTable">
+                           <columns>
+                              <TableColumn fx:id="pretTitreColumn" prefWidth="300.0" text="Document" />
+                              <TableColumn fx:id="pretDateColumn" prefWidth="120.0" text="Date Prêt" />
+                              <TableColumn fx:id="pretRetourColumn" prefWidth="120.0" text="Retour Prévu" />
+                              <TableColumn fx:id="pretStatutColumn" prefWidth="100.0" text="Statut" />
+                              <TableColumn fx:id="pretAmendeColumn" prefWidth="100.0" text="Amende" />
+                           </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+
+            <!-- Onglet Réservations -->
+            <Tab text="Mes Réservations">
+               <content>
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label styleClass="section-title" text="Mes réservations" />
+                        <TableView fx:id="reservationsTable">
+                           <columns>
+                              <TableColumn fx:id="reservationTitreColumn" prefWidth="300.0" text="Document" />
+                              <TableColumn fx:id="reservationDateColumn" prefWidth="120.0" text="Date Réservation" />
+                              <TableColumn fx:id="reservationPositionColumn" prefWidth="80.0" text="Position" />
+                              <TableColumn fx:id="reservationStatutColumn" prefWidth="100.0" text="Statut" />
+                              <TableColumn fx:id="reservationActionColumn" prefWidth="100.0" text="Action" />
+                           </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

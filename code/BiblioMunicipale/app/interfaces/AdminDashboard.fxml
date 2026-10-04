@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controleurs.AdminController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="header">
+         <children>
+            <Label styleClass="header-title" text="Administration" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="userInfoLabel" styleClass="user-info" />
+            <Button onAction="#handleLogout" styleClass="logout-button" text="Déconnexion" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </HBox>
+   </top>
+
+   <center>
+      <TabPane tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Utilisateurs">
+               <content>
+                  <BorderPane>
+                     <top>
+                        <VBox spacing="15.0" styleClass="form-section">
+                           <children>
+                              <Label styleClass="section-title" text="Ajouter un utilisateur" />
+
+                              <!-- Première ligne : champs généraux -->
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="newUsernameField" promptText="Email" />
+                                    <PasswordField fx:id="newPasswordField" promptText="Mot de passe" />
+                                    <TextField fx:id="newNomField" promptText="Nom" />
+                                    <TextField fx:id="newPrenomField" promptText="Prénom" />
+                                    <ComboBox fx:id="newRoleCombo" promptText="Sélectionner un rôle" />
+                                 </children>
+                              </HBox>
+
+                              <!-- 🆕 Deuxième ligne : champs spécifiques aux clients -->
+                              <VBox spacing="10.0">
+                                 <children>
+                                    <Label fx:id="residentLabel" text="Statut de résidence:" visible="false" styleClass="field-label"/>
+                                    <CheckBox fx:id="residentCheckBox" text="Résident de la ville (inscription gratuite)" visible="false"/>
+
+                                    <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label fx:id="fraisLabel" text="Frais d'inscription (DH):" visible="false" styleClass="field-label"/>
+                                          <TextField fx:id="fraisField" promptText="0.00" visible="false" prefWidth="100.0"/>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+
+                              <!-- Troisième ligne : boutons d'action -->
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Button onAction="#handleAddUser" styleClass="primary-button" text="Ajouter Utilisateur" />
+                                    <Button onAction="#handleDeleteUser" styleClass="danger-button" text="Supprimer Sélectionné" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     </top>
+                     <center>
+                        <TableView fx:id="usersTable">
+                           <columns>
+                              <TableColumn fx:id="usernameColumn" prefWidth="200.0" text="Email" />
+                              <TableColumn fx:id="nomColumn" prefWidth="150.0" text="Nom" />
+                              <TableColumn fx:id="roleColumn" prefWidth="120.0" text="Rôle" />
+                           </columns>
+                        </TableView>
+                     </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+
+            <!-- 🆕 Nouvel onglet spécifique pour l'inscription des clients -->
+            <Tab text="Inscription Client">
+               <content>
+                  <VBox spacing="20.0">
+                     <children>
+                        <Label styleClass="section-title" text="Inscription d'un nouveau client" />
+
+                        <GridPane hgap="15.0" vgap="15.0">
+                           <columnConstraints>
+                              <ColumnConstraints minWidth="120.0" />
+                              <ColumnConstraints minWidth="200.0" />
+                           </columnConstraints>
+
+                           <children>
+                              <Label text="Nom :" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="field-label"/>
+                              <TextField fx:id="clientNomField" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Nom du client"/>
+
+                              <Label text="Prénom :" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="field-label"/>
+                              <TextField fx:id="clientPrenomField" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Prénom du client"/>
+
+                              <Label text="Email :" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="field-label"/>
+                              <TextField fx:id="clientEmailField" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="email@exemple.com"/>
+
+                              <Label text="Mot de passe :" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="field-label"/>
+                              <PasswordField fx:id="clientPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Mot de passe"/>
+
+                              <Label text="Statut :" GridPane.columnIndex="0" GridPane.rowIndex="4" styleClass="field-label"/>
+                              <CheckBox fx:id="clientResidentCheckBox" text="Résident de la ville" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                              <Label text="Frais (DH) :" GridPane.columnIndex="0" GridPane.rowIndex="5" styleClass="field-label"/>
+                              <TextField fx:id="clientFraisField" GridPane.columnIndex="1" GridPane.rowIndex="5" promptText="0.00" editable="false"/>
+                           </children>
+                        </GridPane>
+
+                        <HBox spacing="15.0">
+                           <children>
+                              <Button onAction="#handleInscriptionClient" styleClass="primary-button" text="Inscrire Client" />
+                              <Button onAction="#handleClearClientForm" styleClass="secondary-button" text="Vider" />
+                           </children>
+                        </HBox>
+
+                        <Separator />
+
+                        <Label styleClass="info-text" text="ℹ️ L'inscription génère automatiquement une carte client avec code-barres unique" />
+                        <Label styleClass="info-text" text="💰 Frais : Gratuit pour les résidents, 100 DH pour les non-résidents" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+
+            <Tab text="Rapports">
+               <content>
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label styleClass="section-title" text="Génération de rapports" />
+                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Type de rapport:" styleClass="field-label"/>
+                              <ComboBox fx:id="typeRapportCombo" prefWidth="250.0" />
+                              <Button onAction="#handleGenerateReport" styleClass="primary-button" text="Générer rapport" />
+                           </children>
+                        </HBox>
+                        <TextArea fx:id="rapportArea" editable="false" prefHeight="400.0"/>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </center>
+</BorderPane>
